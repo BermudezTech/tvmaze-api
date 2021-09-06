@@ -1,0 +1,18 @@
+// BREAKPOINTS
+$hdScreen: 1280px;
+$mediumScreen: 900px;
+$tabletScreen: 720px;
+$smallScreen: 500px;
+$smartphoneScreen: 300px;
+
+//COLORS
+$colorOne: #444444; /* Gris oscuro */
+$colorTwo: #626262; /* Gris claro */
+$colorThree: #289389; /* Verde oscuro */
+$colorFour: #72C1B6; /* Verde claro */
+
+@mixin mediaQ($maxWidth){
+	@media only screen and (max-width: $maxWidth) {
+		@content;
+	}
+}

@@ -1,0 +1,26 @@
+@import "_variables";
+
+.Contenedor{
+	width: 90%;
+	margin: 30px auto;
+	padding-bottom: 60px;
+	display: grid;
+	grid-template-areas: "media media media media media";
+}
+
+.Contenedor .Media{
+	grid-area: media;
+}
+
+@mixin screenAdjust($maxWidth, $template){
+	@media only screen and (max-width: $maxWidth) {
+		.Contenedor{
+			grid-template-areas: $template;
+		}
+	}
+}
+
+@include screenAdjust($hdScreen, "media media media media");
+@include screenAdjust($mediumScreen, "media media media");
+@include screenAdjust($tabletScreen, "media media");
+@include screenAdjust($smallScreen, "media");

@@ -1,0 +1,9 @@
+@import "components/styles/_variables";
+
+body {
+  background-image: radial-gradient($colorTwo, $colorOne);
+  background-size: cover;
+  height: 80vh;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}

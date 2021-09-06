@@ -1,0 +1,37 @@
+.buscador {
+  background-color: #C4C4C450;
+  width: 90%;
+  max-width: 830px;
+  height: 50px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 30px;
+  box-sizing: border-box;
+  input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 1rem;
+    padding: 20px;
+    &:focus{
+      outline: none;
+    }
+  }
+  form{
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+    .buscador{
+      height: 40px;
+      margin-top: 10px;
+      input{
+        font-size: .8rem;
+        padding: 5px;
+      }
+    }
+  }

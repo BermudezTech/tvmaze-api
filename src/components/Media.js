@@ -8,7 +8,7 @@ export default function Media({title, imgUrl, id, setShowId}){
 	}
 	return(
 		<>
-			<div className="media" onClick={() => {console.log("Media clicked"); setShowId(id)}}>
+			<div className="media" onClick={() => {setShowId(id)}}>
 				<div className="media-img" style={mediaImgStyle}/>
 				<p>{title}</p>
 			</div>

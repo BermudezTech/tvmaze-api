@@ -4,7 +4,7 @@
 	color: #ffffff;
 	max-width: 1000px;
 	margin: auto;
-	h2{
+	.h2-link{
 		margin-bottom: 0px;
 		cursor: pointer;
 		&:hover{
@@ -94,7 +94,7 @@ p{
 		justify-items: center;
 	}
 	.mediaImg{
-		width: 320px;
-		height: 380px;
+		width: 280px;
+		height: 340px;
 	}
 }

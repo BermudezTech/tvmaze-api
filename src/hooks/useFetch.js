@@ -1,14 +1,14 @@
 import {useState, useEffect} from 'react';
 
-export const useFetch = (url) => {
+export const useFetch = (url, mode) => {
 	const [data, setData] = useState(null);
 	const [isPending, setIsPending] = useState(true);
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		const getData = async(url) => {
+		const getData = async(url, mode) => {
 			try{
-				let res = await fetch(url);
+				let res = await fetch(url, {mode});
 
 				if(!res.ok) {
 					throw new Error({

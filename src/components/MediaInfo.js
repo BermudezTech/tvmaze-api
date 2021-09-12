@@ -9,9 +9,10 @@ import {useFetch} from "../hooks/useFetch";
 const B = (props) => <span style={{fontWeight: 'bold'}}>{props.text}</span>
 export default function MediaInfo({showId, setShowId}){
 	let image = "";
+	// api TVMaze
 	let url = `https://api.tvmaze.com/shows/${showId}`;
-	let {data, isPending} = useFetch(url);
-	console.log(data);
+	let {data, isPending} = useFetch(url, 'cors');
+	//console.log(data);
 	if (data !== null){
 		if (data.image !== null){
 			image = data.image.original;
@@ -25,6 +26,20 @@ export default function MediaInfo({showId, setShowId}){
 	}else{
 		loader = <span></span>;
 	}
+
+	//api Comments
+
+	let urlComments = `http://localhost/api/commentstvmaze.php?showId=${showId}&operation=get&data=hola`;
+	let fetchComments = useFetch(urlComments, 'no-cors');
+	//console.log(fetchComments['data']);
+	let comments = undefined;
+	if (fetchComments['data'] !== null) {
+		comments = Object.keys(fetchComments['data']).map((key) => fetchComments['data'][key]);
+	}else{
+		comments = [];
+	}
+	//console.log(comments);
+
 	return(
 		<>
 		<div className="MediaInfo">
@@ -34,7 +49,7 @@ export default function MediaInfo({showId, setShowId}){
 				<div className="mediaDesc">
 					{loader}
 					<h1>{data !== null && data.name}</h1>
-					<div dangerouslySetInnerHTML={{__html: data !== null && data.summary}}></div>	
+					<div dangerouslySetInnerHTML={{__html: data !== null ? data.summary : ""}}></div>	
 				</div>
 			</div>
 			<div className="aditionalInfo">
@@ -46,12 +61,12 @@ export default function MediaInfo({showId, setShowId}){
 						<br/><B text="Status: " />{data !== null && data.status}
 						<br/><B text="Show Type: " />{data !== null && data.type}
 						<br/><B text="Genres: " />{data !== null && data.genres.map(e => `${e} `)}
-						<br/><B text="Official site: " /><a href={data !== null && (data.officialSite ?? 'Not available')} about="_blank">{data !== null && (data.officialSite ?? 'Not available')}</a>
+						<br/><B text="Official site: " /><a href={data !== null ? (data.officialSite ?? 'Not available') : undefined} about="_blank">{data !== null && (data.officialSite ?? 'Not available')}</a>
 					</p>
 			</div>
 			<div className="commentsSection" style={{width: "100%"}}>
 				<CommentsForm />
-				<Comment />
+				{comments.map(e => <Comment key={e.commentId} name={e.name} mail={e.mail} comment={e.comment}/>)}
 			</div>
 			</div>
 		</div>

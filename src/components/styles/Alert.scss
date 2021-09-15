@@ -2,21 +2,22 @@
 
 .message{
 	width: 50%;
-	padding: 5px;
 	box-sizing: border-box;
 	color: #ffffff;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 14px;
+	height: 0px;
+	font-size: 0px;
 	position: fixed;
 	left: 25%;
+	top: 10vh;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	animation: openMessage 1s;
+	animation: openMessage 6s;
 }
 
 .success{
-	background-color: green;
+	background-image: linear-gradient(45deg, $colorThree, $colorFour);
 }
 
 .error{
@@ -28,7 +29,9 @@
 		height: 0px;
 		font-size: 0px;
 	}
-	100%{
+	60%{
 		height: 30px;
+		font-size: 14px;
+		padding: 5px;
 	}
 }

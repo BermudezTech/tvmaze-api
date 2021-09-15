@@ -3,16 +3,16 @@ import './styles/MediaInfo.scss';
 import CommentsForm from './CommentsForm';
 import Comment from './Comment';
 import Loader from "./Loader";
-//import Alert from "./Alert";
 import {useFetch} from "../hooks/useFetch";
 
 const B = (props) => <span style={{fontWeight: 'bold'}}>{props.text}</span>
 export default function MediaInfo({showId, setShowId}){
 	let image = "";
+
 	// api TVMaze
+	
 	let url = `https://api.tvmaze.com/shows/${showId}`;
-	let {data, isPending} = useFetch(url, 'cors');
-	//console.log(data);
+	let {data, isPending} = useFetch(url);
 	if (data !== null){
 		if (data.image !== null){
 			image = data.image.original;
@@ -29,16 +29,14 @@ export default function MediaInfo({showId, setShowId}){
 
 	//api Comments
 
-	let urlComments = `http://localhost/api/commentstvmaze.php?showId=${showId}&operation=get&data=hola`;
-	let fetchComments = useFetch(urlComments, 'no-cors');
-	//console.log(fetchComments['data']);
+	let urlComments = `http://localhost/api/commentstvmaze.php?showId=${showId}&operation=get`;
+	let fetchComments = useFetch(urlComments);
 	let comments = undefined;
 	if (fetchComments['data'] !== null) {
 		comments = Object.keys(fetchComments['data']).map((key) => fetchComments['data'][key]);
 	}else{
 		comments = [];
 	}
-	//console.log(comments);
 
 	return(
 		<>
@@ -65,7 +63,7 @@ export default function MediaInfo({showId, setShowId}){
 					</p>
 			</div>
 			<div className="commentsSection" style={{width: "100%"}}>
-				<CommentsForm />
+				<CommentsForm showId={showId}/>
 				{comments.map(e => <Comment key={e.commentId} name={e.name} mail={e.mail} comment={e.comment}/>)}
 			</div>
 			</div>

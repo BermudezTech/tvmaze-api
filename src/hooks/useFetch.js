@@ -1,14 +1,21 @@
 import {useState, useEffect} from 'react';
 
-export const useFetch = (url, mode) => {
+export const useFetch = (url, body, method, mode) => {
 	const [data, setData] = useState(null);
 	const [isPending, setIsPending] = useState(true);
 	const [error, setError] = useState(null);
 
+	let formData = new FormData();
+	formData.append('data', JSON.stringify(body));
+
+	body = (body === undefined) ? null : formData;
+	mode = mode || "cors";
+	method = method || "GET";
+
 	useEffect(() => {
-		const getData = async(url, mode) => {
+		const getData = async(url) => {
 			try{
-				let res = await fetch(url, {mode});
+				let res = await fetch(url, {method, mode, body});
 
 				if(!res.ok) {
 					throw new Error({

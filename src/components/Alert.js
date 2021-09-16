@@ -5,7 +5,6 @@ import './styles/Alert.scss';
 export default function Alert({urlComments, name, mail, comment, setName, setMail, setComment}){
 	let fetchComments = useFetch(urlComments, {name, mail, comment}, "POST", 'cors');
 	let pending = fetchComments.isPending;
-	let data = fetchComments.data;
 	let message = "";
 	let type = "";
 

@@ -49,7 +49,7 @@ export default function Comments({showId}){
 									commentId={e.commentId} 
 									setCommentId={setCommentId} 
 									setDeletingComment={setDeletingComment}/>)}
-			{comments.length === 0 && <h2>There are not comments for this show</h2>}
+			{comments.length === 0 && <h2>There are no comments for this show</h2>}
 			{deletingComment && <DelComment 
 									showId={showId}
 									commentId={commentId}

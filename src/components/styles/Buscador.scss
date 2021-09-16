@@ -25,6 +25,15 @@
   }
 }
 
+.searchBtn {
+  background: transparent;
+  border: none;
+  img{
+    width: 20px;
+    height: 20px;
+  }
+}
+
 @media only screen and (max-width: 500px) {
     .buscador{
       height: 40px;

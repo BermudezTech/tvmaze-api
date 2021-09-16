@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import './styles/Buscador.scss';
+import searchLogo from "./img/SearchBtn.svg";
 
 export default function Buscador({changeBusqueda, busqueda, setShowId}) {
   const [focus, setFocus] = useState(false);
@@ -25,7 +26,9 @@ export default function Buscador({changeBusqueda, busqueda, setShowId}) {
             onFocus={handleFocus}
             onBlur={handleFocus}/>
         </form>
-        <button type="submit" disabled>?</button>
+        <button type="submit" disabled className="searchBtn">
+          <img src={searchLogo} alt="searchBtn"/>
+        </button>
       </div>
     </>
   );

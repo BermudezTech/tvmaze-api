@@ -27,9 +27,7 @@ export default function CommentsForm({showId, updateComments}){
 	return(
 		<>
 			{submit && 
-				<Alert 
-					message="El comentario se creo correctamente" 
-					type="success" 
+				<Alert  
 					urlComments={urlComments}
 					name={name} 
 					mail={mail} 

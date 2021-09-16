@@ -8,8 +8,8 @@ import "./styles/Contenido.scss";
 export default function Contenido({busqueda, showId, setShowId}){
 	let query = busqueda.toLowerCase();
 	let url = `https://api.tvmaze.com/search/shows?q=${query}`;
-	let {data, isPending} = useFetch(url);
-	//console.log(data);
+	let {data, isPending, error} = useFetch(url);
+	console.log(error);
 	return(
 		<>
 			{isPending === true && <Loader />}
@@ -27,6 +27,7 @@ export default function Contenido({busqueda, showId, setShowId}){
 						))
 				) : (<span></span>)}
 				{(data !== null) ? (<h2 style={{color: 'white'}}>{data.length === 0 ? "No results found":""}</h2>) : (<span></span>)}
+				{(error !== null) && <h2 style={{color: 'white'}}>{error.stack}</h2>}
 			</div>
 		</>
 	);

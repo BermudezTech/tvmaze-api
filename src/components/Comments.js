@@ -26,6 +26,12 @@ export default function Comments({showId}){
 		loader = <span></span>;
 	}
 
+	if(fetchComments.error !== null){
+		if(fetchComments.error.message === "Failed to fetch"){
+			loader = <h2>Comments could not be loaded. The comments server is not working. {fetchComments.error.message}</h2>;
+		}
+	}
+
 	const updateComments = () =>{
 		setReloader(reloader+1);
 		setUrlComments(`http://localhost/api/commentstvmaze.php?showId=${showId}&operation=get&reload=${reloader+1}`);
@@ -43,6 +49,7 @@ export default function Comments({showId}){
 									commentId={e.commentId} 
 									setCommentId={setCommentId} 
 									setDeletingComment={setDeletingComment}/>)}
+			{comments.length === 0 && <h2>There are not comments for this show</h2>}
 			{deletingComment && <DelComment 
 									showId={showId}
 									commentId={commentId}

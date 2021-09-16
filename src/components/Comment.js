@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Comment({name, mail, comment}){
+export default function Comment({name, mail, comment, commentId, setCommentId, setDeletingComment}){
 	const delButton = {
 		display: "flex",
 	    position: "relative",
@@ -15,9 +15,13 @@ export default function Comment({name, mail, comment}){
 	    alignItems: "center",
 	    cursor: "pointer"
     }
+    const delComment = () => {
+    	setCommentId(commentId);
+    	setDeletingComment(true);
+    }
 	return(
 		<>
-			<span style={delButton}>X</span>
+			<span style={delButton} onClick={delComment}>X</span>
 			<hr style={{border: "2px solid #289389"}}/>
 			<h2 style={{margin: "0px"}}>{name}</h2>
 			<p style={{margin: "0px"}}>{mail}</p>

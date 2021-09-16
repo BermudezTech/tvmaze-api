@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Alert from './Alert';
 import './styles/CommentsForm.scss';
 
-export default function CommentsForm({showId}){
+export default function CommentsForm({showId, updateComments}){
 	const [name, setName] = useState("");
 	const [mail, setMail] = useState("");
 	const [comment, setComment] = useState("");
@@ -21,6 +21,7 @@ export default function CommentsForm({showId}){
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setSubmit(true);
+		updateComments();
 	}
 	let urlComments = `http://localhost/api/commentstvmaze.php?showId=${showId}&operation=post`;
 	return(
@@ -35,7 +36,8 @@ export default function CommentsForm({showId}){
 					comment={comment}
 					setName={setName} 
 					setMail={setMail} 
-					setComment={setComment}
+					setComment={setComment} 
+					updateComments={updateComments}
 				/>
 			}
 			<h2>COMMENTS</h2>

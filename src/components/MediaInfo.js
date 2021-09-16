@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles/MediaInfo.scss';
-import CommentsForm from './CommentsForm';
-import Comment from './Comment';
+import Comments from './Comments';
 import Loader from "./Loader";
 import {useFetch} from "../hooks/useFetch";
 
@@ -25,17 +24,6 @@ export default function MediaInfo({showId, setShowId}){
 		loader = <Loader />;
 	}else{
 		loader = <span></span>;
-	}
-
-	//api Comments
-
-	let urlComments = `http://localhost/api/commentstvmaze.php?showId=${showId}&operation=get`;
-	let fetchComments = useFetch(urlComments);
-	let comments = undefined;
-	if (fetchComments['data'] !== null) {
-		comments = Object.keys(fetchComments['data']).map((key) => fetchComments['data'][key]);
-	}else{
-		comments = [];
 	}
 
 	return(
@@ -63,8 +51,7 @@ export default function MediaInfo({showId, setShowId}){
 					</p>
 			</div>
 			<div className="commentsSection" style={{width: "100%"}}>
-				<CommentsForm showId={showId}/>
-				{comments.map(e => <Comment key={e.commentId} name={e.name} mail={e.mail} comment={e.comment}/>)}
+			<Comments showId={showId}/>
 			</div>
 			</div>
 		</div>

@@ -9,7 +9,7 @@ export default function Contenido({busqueda, showId, setShowId}){
 	let query = busqueda.toLowerCase();
 	let url = `https://api.tvmaze.com/search/shows?q=${query}`;
 	let {data, isPending, error} = useFetch(url);
-	console.log(error);
+	//console.log(error);
 	return(
 		<>
 			{isPending === true && <Loader />}
